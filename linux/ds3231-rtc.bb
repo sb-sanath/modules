@@ -9,7 +9,8 @@ PV = "0.1"
 
 SRC_URI = " \
 	file://Makefile \
-	file://main.c \
+	file://ds3231_rtc.c \
+	file://ds3231_rtc.h \
 "
 #file://COPYING
 

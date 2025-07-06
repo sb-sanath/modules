@@ -1,22 +1,38 @@
 #include "ds3231_rtc.h"
 
-/*Module's init entry point */
-static int __init helloworld_init(void)
-{
-   pr_info("Hello world\n");
-   return 0;
+static int ds3231_probe(struct i2c_client *client, const struct i2c_device_id *id){
+
+  return 0;
 }
 
-/*Module's cleanup entry point */
-static void __exit helloworld_cleanup(void)
-{
-  pr_info("Good bye world\n");
+static int ds3231_remove(struct i2c_client *client){
+
+  return 0;
 }
 
-module_init(helloworld_init);
-module_exit(helloworld_cleanup);
+static const struct i2c_device_id ds3231_i2c_device_id [] = {
+  {"ds3231_rtc", 0},
+  {}
+};
+MODULE_DEVICE_TABLE(i2c, ds3231_i2c_device_id);
+
+static const struct of_device_id ds3231_match_table[] = {
+  {.compatible = "ad,ds3231_rtc"},
+  {}
+};
+MODULE_DEVICE_TABLE(of, ds3231_match_table);
+
+static struct i2c_driver ds3231_driver = {
+  .probe = ds3231_probe,
+  .remove = ds3231_remove,
+  .id_table = ds3231_i2c_device_id,
+  .driver = {
+    .name = "ds3231_driver",
+    .of_match_table = ds3231_match_table,
+  },
+
+};
+module_i2c_driver(ds3231_driver);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Kiran Nayak");
-MODULE_DESCRIPTION("A simple hello world kernel module");
-MODULE_INFO(board,"Beaglebone black REV A5");
+MODULE_AUTHOR("Sanath SB");

@@ -1,4 +1,7 @@
-#include<linux/module.h>
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/i2c.h>
+#include <linux/of.h>
 
 #define SECONDS     0x00
 #define MINUTES     0x01

@@ -19,7 +19,7 @@
 #host:
 #	make -C $(HOST_KERN_DIR) M=$(PWD) modules
 	
-obj-m := main.o
+obj-m := ds3231_rtc.o
 SRC := $(shell pwd)
 
 all:
